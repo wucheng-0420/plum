@@ -1,34 +1,116 @@
 <template>
   <!-- template里只能有一个根节点 -->
-  <div class="demo-page">
-    <text class="title">欢迎打开{{title}}</text>
-    <text class="title">测试ssssssssvvvv</text>
-    <!-- 点击跳转详情页 -->
-    <input class="btn" type="button" value="跳转到详情页" onclick="routeDetail" />
+  <div class="app">
+    <div class="swiper-container">
+      <swiper class="swiper-wrapper" id="swiper" autoplay="true">
+        <text class="swiper-slide color-1">A</text>
+        <text class="swiper-slide color-2">B</text>
+        <text class="swiper-slide color-3">C</text>
+      </swiper>
+    </div>
+    <tabs class="tabs" onchange="changeTabactive" index="2">
+      <tab-content class="tab-content">
+          <!--基础组件-->
+          <div class="item-container">
+              <div class="item-content">
+                  <text class="item-title">a</text>
+                  <a style="color: #09ba07;" href="http://www.huawei.com/">华为官网</a>
+              </div>
+
+              <div class="item-content">
+                  <text class="item-title">image</text>
+                  <image src="/Common/img/xmad.jpg" class="image"></image>
+              </div>
+
+              <div class="item-content">
+                  <text class="item-title">progerss type="horizontal"</text>
+                  <progress percent="20" style="margin-top: 20px;color:#0faeff;stroke-width:10px"></progress>
+              </div>
+
+              <div class="item-content">
+                  <text class="item-title">progerss type="circular"</text>
+                  <progress class="circular" type="circular" style="margin-top: 20px;color:#A020F0;"></progress>
+              </div>
+
+              <div class="item-content">
+                  <text class="item-title">text</text>
+                  <text style="color: #f76160">I am text</text>
+              </div>
+
+              <div class="item-content">
+                  <text class="item-title">span</text>
+                  <text>
+                      <span style="color: #09ba07">I am span</span>
+                  </text>
+              </div>
+          </div>
+
+          <!--表单组件-->
+          <div class="item-container">
+              <div class="item-content">
+                  <text class="item-title">input</text>
+                  <input class="item-input" placeholder="I am input" />
+              </div>
+
+              <div class="item-content">
+                  <text class="item-title">picker</text>
+                  <picker class="item-picker" type="time" value="{{time}}" onchange="setTime"></picker>
+              </div>
+
+              <div class="item-content">
+                  <text class="item-title">slider</text>
+                  <slider class="item-slider" style="selected-color:#0faeff" min="50" max="200" value="100" />
+              </div>
+          </div>
+
+          <!--列表组件-->
+          <div class="item-container">
+              <input type="button" class="btn" value="回到第一个item" onclick="goIndex" />
+              <list class="list" onscrollbottom="scrollbottom" id="list" scrollpage="{{scrollPage}}">
+                  <list-item type="listItem" class="item item_color" for="{{list_data}}">
+                      <text class="txt">{{$item.name}}--{{$idx}}</text>
+                  </list-item>
+                  <list-item type="loadMore" class="load-more" if="{{loadMore}}">
+                      <progress type="circular"></progress>
+                      <text>加载更多</text>
+                  </list-item>
+              </list>
+          </div>
+      </tab-content>
+      <tab-bar class="tab-bar">
+          <text class="tab-text">首页</text>
+          <text class="tab-text">直播间</text>
+          <text class="tab-text">个人中心</text>
+      </tab-bar>
+    </tabs>
   </div>
 </template>
 
 <style>
-  .demo-page {
+  .app {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
-
-  .title {
-    font-size: 40px;
+  .swiper-container {
+    height: 350px;
+  }
+  .swiper-wrapper {
+    flex-direction: column;
+    /*indicator-color: #800080;
+    indicator-selected-color: #000000;*/
+  }
+  .color-1 {
+    background-color: aquamarine;
     text-align: center;
   }
-
-  .btn {
-    width: 550px;
-    height: 86px;
-    margin-top: 75px;
-    border-radius: 43px;
-    background-color: #09ba07;
-    font-size: 30px;
-    color: #ffffff;
+  .color-2 {
+    background-color: blanchedalmond;
+    text-align: center;
   }
+  .color-3 {
+    background-color: cadetblue;
+    text-align: center;
+  }
+  
 </style>
 
 <script>
