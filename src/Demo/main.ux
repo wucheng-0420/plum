@@ -1,0 +1,74 @@
+<import name="plum-index" src="./index"></import>
+<template>
+    <!-- template里只能有一个根节点 -->
+    <div class="app">
+      <tabs class="tabs" onchange="changeTabactive" index="0">
+        <tab-content class="tab-content">
+            <!--首页-->
+            <plum-index></plum-index>
+  
+            <!--直播间-->
+            <div class="item-container">
+                <div class="item-content">
+                    <text class="item-title">input</text>
+                    <input class="item-input" placeholder="I am input" />
+                </div>
+  
+                <div class="item-content">
+                    <text class="item-title">picker</text>
+                    <picker class="item-picker" type="time" value="{{time}}" onchange="setTime"></picker>
+                </div>
+  
+                <div class="item-content">
+                    <text class="item-title">slider</text>
+                    <slider class="item-slider" style="selected-color:#0faeff" min="50" max="200" value="100" />
+                </div>
+            </div>
+  
+            <!--个人中心-->
+            <div class="item-container">
+                <input type="button" class="btn" value="回到第一个item" onclick="goIndex" />
+                <list class="list" onscrollbottom="scrollbottom" id="list" scrollpage="{{scrollPage}}">
+                    <list-item type="listItem" class="item item_color" for="{{list_data}}">
+                        <text class="txt">{{$item.name}}--{{$idx}}</text>
+                    </list-item>
+                    <list-item type="loadMore" class="load-more" if="{{loadMore}}">
+                        <progress type="circular"></progress>
+                        <text>加载更多</text>
+                    </list-item>
+                </list>
+            </div>
+        </tab-content>
+        <tab-bar class="tab-bar">
+            <text class="tab-text">首页</text>
+            <text class="tab-text">直播间</text>
+            <text class="tab-text">个人中心</text>
+        </tab-bar>
+      </tabs>
+    </div>
+  </template>
+  
+  <style>
+    .app {
+      flex-direction: column;
+    }
+    
+  </style>
+  
+  <script>
+    import router from '@system.router'
+  
+    export default {
+      // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
+      private: {
+        title: '示例页面'
+      },
+      routeDetail () {
+        // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+        router.push ({
+          uri: '/DemoDetail'
+        })
+      }
+    }
+  </script>
+  

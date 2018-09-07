@@ -1,6 +1,6 @@
 <template>
   <!-- template里只能有一个根节点 -->
-  <div class="app">
+  <div class="fx-dt-col">
     <div class="swiper-container">
       <swiper class="swiper-wrapper" id="swiper" autoplay="true">
         <text class="swiper-slide color-1">A</text>
@@ -8,88 +8,52 @@
         <text class="swiper-slide color-3">C</text>
       </swiper>
     </div>
-    <tabs class="tabs" onchange="changeTabactive" index="2">
-      <tab-content class="tab-content">
-          <!--基础组件-->
-          <div class="item-container">
-              <div class="item-content">
-                  <text class="item-title">a</text>
-                  <a style="color: #09ba07;" href="http://www.huawei.com/">华为官网</a>
+    <div class="fx-dt-col">
+        <div class="pm-title"><text>最新动态</text><a>更多</a></div>
+        <!-- 列表 -->
+        <list class="list">
+          <!-- 列表元素，属性type值相同时，需要确保渲染后的视图布局也完全相同，用show代替if，确保布局视图不变 -->
+          <list-item type="listItem" class="list-item" for="{{listData}}">
+              <image src=""></image>
+              <div class="item-title">
+                <a><span>官方</span>直播标题</a>
+                <text>直播简介：内容内容</text>
+                <text>xxxxxxxxxxxxx</text>
               </div>
-
-              <div class="item-content">
-                  <text class="item-title">image</text>
-                  <image src="/Common/img/xmad.jpg" class="image"></image>
-              </div>
-
-              <div class="item-content">
-                  <text class="item-title">progerss type="horizontal"</text>
-                  <progress percent="20" style="margin-top: 20px;color:#0faeff;stroke-width:10px"></progress>
-              </div>
-
-              <div class="item-content">
-                  <text class="item-title">progerss type="circular"</text>
-                  <progress class="circular" type="circular" style="margin-top: 20px;color:#A020F0;"></progress>
-              </div>
-
-              <div class="item-content">
-                  <text class="item-title">text</text>
-                  <text style="color: #f76160">I am text</text>
-              </div>
-
-              <div class="item-content">
-                  <text class="item-title">span</text>
-                  <text>
-                      <span style="color: #09ba07">I am span</span>
-                  </text>
-              </div>
-          </div>
-
-          <!--表单组件-->
-          <div class="item-container">
-              <div class="item-content">
-                  <text class="item-title">input</text>
-                  <input class="item-input" placeholder="I am input" />
-              </div>
-
-              <div class="item-content">
-                  <text class="item-title">picker</text>
-                  <picker class="item-picker" type="time" value="{{time}}" onchange="setTime"></picker>
-              </div>
-
-              <div class="item-content">
-                  <text class="item-title">slider</text>
-                  <slider class="item-slider" style="selected-color:#0faeff" min="50" max="200" value="100" />
-              </div>
-          </div>
-
-          <!--列表组件-->
-          <div class="item-container">
-              <input type="button" class="btn" value="回到第一个item" onclick="goIndex" />
-              <list class="list" onscrollbottom="scrollbottom" id="list" scrollpage="{{scrollPage}}">
-                  <list-item type="listItem" class="item item_color" for="{{list_data}}">
-                      <text class="txt">{{$item.name}}--{{$idx}}</text>
-                  </list-item>
-                  <list-item type="loadMore" class="load-more" if="{{loadMore}}">
-                      <progress type="circular"></progress>
-                      <text>加载更多</text>
-                  </list-item>
-              </list>
-          </div>
-      </tab-content>
-      <tab-bar class="tab-bar">
-          <text class="tab-text">首页</text>
-          <text class="tab-text">直播间</text>
-          <text class="tab-text">个人中心</text>
-      </tab-bar>
-    </tabs>
+          </list-item>
+      </list>
+    </div>
+    <div class="fx-dt-col">
+      <div class="pm-title"><text>客户案例</text></div>
+      <list class="list1">
+          <!-- 列表元素，属性type值相同时，需要确保渲染后的视图布局也完全相同，用show代替if，确保布局视图不变 -->
+          <list-item type="listItem" class="list-item" for="{{listData1}}">
+              <image src=""></image>
+              <text>名称名称</text>
+          </list-item>
+      </list>
+    </div>
+    <div  class="fx-dt-col">
+        <div class="pm-title"><text>直播设备</text></div>
+        <list class="list2">
+            <!-- 列表元素，属性type值相同时，需要确保渲染后的视图布局也完全相同，用show代替if，确保布局视图不变 -->
+            <list-item type="listItem" class="list-item" for="{{listData2}}">
+                <image src=""></image>
+                <div class="item-title1">
+                    <text>名称名称</text>
+                    <text>$100</text>
+                </div>
+            </list-item>
+        </list>
+    </div>
   </div>
 </template>
 
 <style>
-  .app {
+  .fx-dt-col {
     flex-direction: column;
   }
+
   .swiper-container {
     height: 350px;
   }
@@ -99,18 +63,97 @@
     indicator-selected-color: #000000;*/
   }
   .color-1 {
-    background-color: aquamarine;
+    background-color: #7FFFD4;
     text-align: center;
   }
   .color-2 {
-    background-color: blanchedalmond;
+    background-color: #FFEBCD;
     text-align: center;
   }
   .color-3 {
-    background-color: cadetblue;
+    background-color: #5F9EA0;
     text-align: center;
   }
-  
+
+  .pm-title {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .pm-title > text {
+    flex: 1;
+    color: #333333;
+    font-size: 35px;
+  }
+
+  .list {
+    height: 450px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .list > .list-item {
+    height: 150px;
+    padding-bottom: 20px;
+  }
+
+  .list > .list-item > image {
+    flex: 1;
+    background-color: #DEB887;
+  }
+
+  .item-title {
+    flex: 2;
+    flex-direction: column;
+    margin-left: 20px;
+  }
+  .list1 {
+    height: 560px;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-direction: column;
+    columns: 3;
+    justify-content: space-between;
+  }
+  .list1 > .list-item {
+    width: 220px;
+    flex-direction: column;
+    padding-bottom: 15px;
+  }
+  .list1 > .list-item > image {
+    background-color: #DEB887;
+    height: 130px;
+  }
+
+  .list1 > .list-item > text {
+    align-self: center;
+  }
+
+  .list2 {
+    height: 660px;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-direction: column;
+    columns: 2;
+    justify-content: space-between;
+  }
+  .list2 > .list-item {
+    width: 338px;
+    flex-direction: column;
+    padding-bottom: 15px;
+  }
+  .list2 > .list-item > image {
+    background-color: #DEB887;
+    height: 230px;
+  }
+  .list2 .item-title1 {
+    flex-direction: column;
+    padding-left: 10px;
+    border-color: #DEB887;
+    border-width: 1px;
+  }
 </style>
 
 <script>
@@ -120,6 +163,11 @@
     // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
     private: {
       title: '示例页面'
+    },
+    data: {
+      listData: ['A', 'B', 'C'],
+      listData1: ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C'],
+      listData2: ['A', 'B', 'C', 'C'],
     },
     routeDetail () {
       // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
