@@ -1,34 +1,90 @@
 <template>
   <!-- template里只能有一个根节点 -->
-  <div class="demo-page">
-    <text class="title">{{text}}</text>
+  <div class="fx-dt-col">
+    <div class="play">
+      <image src="" alt="" />
+    </div>
+    <text class="title">南山博士论坛2018年 第6期：材料机营</text>
+    <text class="date">时间：2018/0702 11:46</text>
+    <div class="fenxiang">
+      <text>527人参与</text>
+      <text class="mianfei">免费</text>
+      <a><span>分享</span></a>
+    </div>
+    <div class="guanzhu">
+      <image src="" alt="" />
+      <text>南山博士论坛</text>
+      <a><span>关注</span></a>
+    </div>
+    <div class="desc">
+      <text class="title">直播简介</text>
+      <text>xxxxxxxxxxxxxxxxxxxxxxxxx</text>
+    </div>
+    <div class="huifang"><text>观看回放</text></div>
   </div>
 </template>
 
-<style>
-  .demo-page {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+<style lang="sass">
+.fx-dt-col {
+  flex-direction: column;
+}
+.play {
+  height: 350px;
+  background-color: bisque;
+}
+.title {
+  color: #333333;
+  font-size: 35px;
+  padding: 15px 20px 0 20px;
+}
+.date {
+  color: #666666;
+  font-size: 25px;
+  padding: 15px 20px 0 20px;
+}
+.fenxiang {
+  padding: 15px 20px 15px 20px;
+  border-color: #f0f0f0;
+  border-bottom-width: 15px;
+  > .mianfei {
+    flex: 1;
+    color: red;
+    
   }
-
-  .title {
-    font-size: 40px;
+}
+.guanzhu {
+  padding: 15px 20px 15px 20px;
+  border-color: #f0f0f0;
+  border-bottom-width: 15px;
+  > text {
+    flex: 1;
+  }
+}
+.desc {
+  flex-direction: column;
+}
+.huifang {
+  background-color: bisque;
+  position: fixed;
+  bottom: 0;
+  > text {
     text-align: center;
   }
+  
+}
 </style>
 
 <script>
-  export default {
-    private: {
-      text: '欢迎打开详情页'
-    },
-    /**
-     * 当用户点击菜单按钮时触发，调用app中定义的方法showMenu
-     * 注意：使用加载器测试`创建桌面快捷方式`功能时，请先在`系统设置`中打开`应用加载器`的`桌面快捷方式`权限
-     */
-    onMenuPress() {
-      this.$app.$def.showMenu()
-    }
+export default {
+  private: {
+    text: "欢迎打开详情页"
+  },
+  /**
+   * 当用户点击菜单按钮时触发，调用app中定义的方法showMenu
+   * 注意：使用加载器测试`创建桌面快捷方式`功能时，请先在`系统设置`中打开`应用加载器`的`桌面快捷方式`权限
+   */
+  onMenuPress() {
+    this.$app.$def.showMenu();
   }
+};
 </script>
